@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: mupnp
+Description: mUPnP for C
+Version: 3.0.2
+Requires:
+Libs: -L${exec_prefix}/lib -lmupnp
+Cflags: -I${includedir}

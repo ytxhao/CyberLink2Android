@@ -146,10 +146,10 @@ Java_com_ytx_cyberlink2android_MainActivity_stringFromJNI(
 
     ctrlPoint = mupnp_controlpoint_new();
     ret = mupnp_controlpoint_start(ctrlPoint);
-//    if (mupnp_controlpoint_start(ctrlPoint) == false) {
-//        J4A_ALOGD("Couldn't start this control point !!");
-//        exit(1);
-//    }
+    if (ret == false) {
+        J4A_ALOGD("Couldn't start this control point !!");
+        exit(1);
+    }
 
     mupnp_controlpoint_search(ctrlPoint, MUPNP_ST_ROOT_DEVICE);
 
@@ -161,5 +161,6 @@ Java_com_ytx_cyberlink2android_MainActivity_stringFromJNI(
     mupnp_controlpoint_delete(ctrlPoint);
 
 
+    J4A_ALOGD("test end");
     return env->NewStringUTF(hello.c_str());
 }
