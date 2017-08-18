@@ -44,7 +44,7 @@ void PrintContentDirectory(mUpnpAction *browseAction, int indent, char *objectId
     resultXml = mupnp_action_getargumentvaluebyname(browseAction, "Result");
     if (mupnp_strlen(resultXml) <= 0)
         return;
-
+    J4A_ALOGD("resultXml=%s",resultXml);
     rootNode = mupnp_xml_nodelist_new();
     xmlParser = mupnp_xml_parser_new();
     if (mupnp_xml_parse(xmlParser, rootNode, resultXml, mupnp_strlen(resultXml))) {
