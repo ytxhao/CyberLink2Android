@@ -7,5 +7,6 @@
     <item type="id" name="loadingMessage"/>
     <item type="id" name="loadingImage"/>
     <item type="id" name="videoSettings"/>
+    <item type="id" name="dlnaServerRefresh"/>
 
 </resources>

@@ -59,6 +59,9 @@ public class AVMediaControllerActivity extends SimpleBarRootActivity implements 
         initData();
         setTitleTextColor(getResources().getColor(R.color.white));
         setTitle(R.string.av_controller_title);
+        hideNavigationIcon(false);
+        setNavigationIcon(R.mipmap.ic_back_pressed_player);
+        addMenu(R.id.dlnaServerRefresh, R.mipmap.ic_refresh);
         setContentView(R.layout.activity_media_controller);
         initView();
     }
@@ -75,6 +78,13 @@ public class AVMediaControllerActivity extends SimpleBarRootActivity implements 
     private void initView(){
         recyclerRefresh = findView(R.id.recyclerRefresh);
 
+
+        recyclerRefresh.setOnClickButtonRefreshListener(new PullToRefreshLayout.OnClickButtonRefreshListener() {
+            @Override
+            public void OnClickButtonRefresh(PullToRefreshLayout view) {
+                getNewDevice();
+            }
+        });
 
         recyclerRefresh.setOnFooterRefreshListener(new PullToRefreshLayout.OnFooterRefreshListener() {
             @Override
@@ -162,6 +172,13 @@ public class AVMediaControllerActivity extends SimpleBarRootActivity implements 
 
     @Override
     public void onItemClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onMenuItemClick(View item) {
+        super.onMenuItemClick(item);
+        recyclerRefresh.onClickButtonRefresh();
 
     }
 }

@@ -104,6 +104,11 @@ public class PullToRefreshLayout extends LinearLayout {
      */
     private OnHeaderRefreshListener mOnHeaderRefreshListener;
 
+    /**
+     * Button Refresh Listener
+     */
+    private OnClickButtonRefreshListener mOnClickButtonRefreshListener;
+
     private OnHeaderUpdateTextListener mOnHeaderUpdateTextListener;
     /**
      * 是否允许上拉加载
@@ -558,6 +563,7 @@ public class PullToRefreshLayout extends LinearLayout {
         mHeaderTextView.setText(mHeaderTextId);
         mHeaderImageView.isRotate(false);
         mHeaderState = PULL_TO_REFRESH;
+        isButtonRefresh = false;
     }
 
     public void onFooterRefreshComplete() {
@@ -575,6 +581,9 @@ public class PullToRefreshLayout extends LinearLayout {
         mOnFooterRefreshListener = footerRefreshListener;
     }
 
+    public void setOnClickButtonRefreshListener(OnClickButtonRefreshListener clickButtonRefreshListener) {
+        mOnClickButtonRefreshListener = clickButtonRefreshListener;
+    }
     public void setonHeaderUpdateTextListener(OnHeaderUpdateTextListener headerUpdateText){
         mOnHeaderUpdateTextListener = headerUpdateText;
     }
@@ -586,6 +595,10 @@ public class PullToRefreshLayout extends LinearLayout {
         public void onHeaderRefresh(PullToRefreshLayout view);
     }
 
+    public interface OnClickButtonRefreshListener {
+        public void OnClickButtonRefresh(PullToRefreshLayout view);
+    }
+
     public interface OnHeaderUpdateTextListener {
         public void onUpdateHeaderText();
     }
@@ -593,14 +606,41 @@ public class PullToRefreshLayout extends LinearLayout {
     @Override
     public void computeScroll() {
         super.computeScroll();
-        if(mScroller.computeScrollOffset()){ //如果正在计算的过程中
 
-            //	scrollTo(mScroller.getCurrX(), 0);
-            //headerView.setPadding(0, mScroller.getCurrY(), 0, 0);
+        if(mScroller.computeScrollOffset()){ //如果正在计算的过程中
+            
             setHeaderTopMargin(mScroller.getCurrY());
             //更新滚动的位置
             invalidate();
 
         }
+    }
+
+    private boolean isButtonRefresh = false;
+    public void onClickButtonRefresh(){
+        if(!isButtonRefresh && mHeaderState != REFRESHING) {
+
+            int startX_t = -mHeaderViewHeight;
+            int startY_t = -mHeaderViewHeight;
+            int endY = 0;
+            int endX = 0;
+            int dx = endX - endY; //增量x
+            int dy = endY - startY_t; //增量y
+            int duration = Math.abs(dy) * 10; // 变化需要的时间
+
+            if (duration > 400) {
+                duration = 400;
+            }
+            mHeaderState = REFRESHING;
+            mHeaderTextView.setText(R.string.refresh_layout_loading);
+            mHeaderImageView.isRotate(true);
+            mScroller.startScroll(startX_t, startY_t, dx, dy, duration);
+            invalidate();
+            if(mOnClickButtonRefreshListener != null){
+                mOnClickButtonRefreshListener.OnClickButtonRefresh(this);
+            }
+        }
+        isButtonRefresh = true;
+
     }
 }
