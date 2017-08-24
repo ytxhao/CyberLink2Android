@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.ytx.cyberlink2android.R;
 import com.ytx.cyberlink2android.adapter.BaseRecyclerAdapter;
+import com.ytx.cyberlink2android.dlna.dmc.AVMediaController;
+import com.ytx.cyberlink2android.dlna.dmc.DmcCore;
 import com.ytx.cyberlink2android.utils.YtxLog;
 import com.ytx.cyberlink2android.view.PullToRefreshLayout;
 
@@ -33,6 +35,7 @@ public class AVMediaControllerActivity extends SimpleBarRootActivity implements 
     private LinearLayoutManager mLayoutManager;
     private RecyclerView recyclerView;
     private BaseRecyclerAdapter adapter;
+    private AVMediaController mAVMediaController = new AVMediaController();
 
     public Handler mHandler = new Handler(){
 
@@ -64,6 +67,7 @@ public class AVMediaControllerActivity extends SimpleBarRootActivity implements 
         addMenu(R.id.dlnaServerRefresh, R.mipmap.ic_refresh);
         setContentView(R.layout.activity_media_controller);
         initView();
+        DmcCore.getInstance().start();
     }
 
 
@@ -146,6 +150,11 @@ public class AVMediaControllerActivity extends SimpleBarRootActivity implements 
             @Override
             public void run() {
                 try {
+                    mAVMediaController.mupnpControlPointNew();
+                    Thread.sleep(1000);
+                    mAVMediaController.mupnpControlPointStup();
+                    Thread.sleep(1000);
+                    mAVMediaController.mupnpControlPointSearch();
                     Thread.sleep(2000);
                     mHandler.sendEmptyMessage(STATE_HEADER_REFRESH_COMPLETE);
                 } catch (InterruptedException e) {
