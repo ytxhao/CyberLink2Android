@@ -13,9 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.scorpio.framework.utils.ScoLog;
+import com.scorpio.framework.utils.ScreenUtil;
 import com.ytx.cyberlink2android.R;
-import com.ytx.cyberlink2android.utils.ScreenUtil;
-import com.ytx.cyberlink2android.utils.YtxLog;
+
 
 
 public class LabelLayout extends LinearLayout {
@@ -150,7 +151,7 @@ public class LabelLayout extends LinearLayout {
         lp.bottomMargin = ScreenUtil.dip2px(6);
 
         boolean havePadding = a.getBoolean(R.styleable.LabelLayout_layout_padding,false);
-        YtxLog.d("dddddd","havePadding="+havePadding+"ScreenUtil.dip2px(EDGE_DISTANCE)="+ScreenUtil.dip2px(EDGE_DISTANCE));
+        ScoLog.d("dddddd","havePadding="+havePadding+"ScreenUtil.dip2px(EDGE_DISTANCE)="+ScreenUtil.dip2px(EDGE_DISTANCE));
         if(havePadding){
             contentLayout.setPadding(ScreenUtil.dip2px(EDGE_DISTANCE),0,ScreenUtil.dip2px(EDGE_DISTANCE),0);
         }

@@ -8,11 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.scorpio.framework.utils.ScoLog;
 import com.ytx.cyberlink2android.R;
 import com.ytx.cyberlink2android.adapter.BaseRecyclerAdapter;
 import com.ytx.cyberlink2android.dlna.dmc.AVMediaController;
 import com.ytx.cyberlink2android.dlna.dmc.DmcCore;
-import com.ytx.cyberlink2android.utils.YtxLog;
 import com.ytx.cyberlink2android.view.PullToRefreshLayout;
 
 import java.util.ArrayList;
@@ -145,7 +145,7 @@ public class AVMediaControllerActivity extends SimpleBarRootActivity implements 
 
     private void getNewDevice() {
 
-        YtxLog.d("test","ytxhao test getNewDevice");
+        ScoLog.d("test","ytxhao test getNewDevice");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -165,7 +165,7 @@ public class AVMediaControllerActivity extends SimpleBarRootActivity implements 
     }
 
     private void getOldDevice() {
-        YtxLog.d("test","ytxhao test getOldDevice");
+        ScoLog.d("test","ytxhao test getOldDevice");
         new Thread(new Runnable() {
             @Override
             public void run() {

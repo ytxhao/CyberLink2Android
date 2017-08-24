@@ -12,8 +12,8 @@ import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
 
+import com.scorpio.framework.utils.ScreenUtil;
 import com.ytx.cyberlink2android.R;
-import com.ytx.cyberlink2android.utils.ScreenUtil;
 
 
 /**

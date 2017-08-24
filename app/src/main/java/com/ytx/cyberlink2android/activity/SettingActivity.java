@@ -4,8 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.scorpio.framework.utils.ScoLog;
 import com.ytx.cyberlink2android.R;
-import com.ytx.cyberlink2android.utils.YtxLog;
+
 
 
 
@@ -27,7 +28,7 @@ public class SettingActivity extends BaseActivity implements  View.OnClickListen
         int id = v.getId();
         if(id == R.id.llMirrorTV){
 
-            YtxLog.d(TAG,"Click llMirrorTV");
+            ScoLog.d(TAG,"Click llMirrorTV");
 
             startActivity(new Intent(this,AVMediaControllerActivity.class));
         }

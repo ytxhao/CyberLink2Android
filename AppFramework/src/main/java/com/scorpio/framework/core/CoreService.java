@@ -18,9 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 核心后台服务
- * 
- * @author zhangchi
- * 
+ *
  */
 public class CoreService extends Service {
 	
@@ -84,29 +82,55 @@ public class CoreService extends Service {
 		return super.onUnbind(intent);
 	}
 
-	public static void exec(final Runnable command) {
-		Runnable runnable = new Runnable() {
-			public void run() {
-				try {
-					command.run();
-				} catch (Throwable t) {
-					ScoLog.E("command", t);
-				}
-			}
-		};
-		sExecutor.execute(runnable);
-	}
-
-	public static void CExec(Runnable command) {
-		exec(command);
-	}
-
 	/**
 	 * 是否已启动后台
 	 */
 	public static boolean isStarted() {
 		return isStarted;
 	}
+
+
+
+	public static void exec(final Runnable command) {
+		Runnable runnable = new Runnable() {
+			public void run() {
+				try {
+					command.run();
+				} catch (Throwable t) {
+					ScoLog.e("core", "command", t);
+				}
+			}
+		};
+		sExecutor.execute(runnable);
+	}
+
+//	public static void execComing(final Runnable command, boolean isIn) {
+//		Runnable runnable = new Runnable() {
+//			public void run() {
+//				try {
+//					command.run();
+//				} catch (Throwable t) {
+//					Log.e("core", "command", t);
+//				}
+//			}
+//		};
+//		if (isIn) {
+//			sIncomingExecutor.execute(runnable);
+//		} else {
+//			sOutcomingExecutor.execute(runnable);
+//		}
+//
+//	}
+
+	public static void CExec(Runnable command) {
+		// if(connectHandler!=null){
+		// connectHandler.post(command);
+		// }else{
+		// Log.e("core", "the looperConnect handler is null!!!!!!!!!!!!!!!!!");
+		// }
+		exec(command);
+	}
+
 
 	private static final int S_CORE_POOL_SIZE = 2;
 	// private static final int CORE_POOL_SIZE = 2;
@@ -126,24 +150,5 @@ public class CoreService extends Service {
 	private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(
 			S_CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE, TimeUnit.SECONDS,
 			sWorkQueue, sThreadFactory);
-
-	
-	
-
-//	private LooperThread mWorkThread;
-//	private static Handler connectHandler;
-//
-//	private class LooperThread extends Thread {
-//		public void run() {
-//			Looper.prepare();
-//			connectHandler = new Handler();
-//			Looper.loop();
-//		}
-//	}
-
-//	private static final SerialExecutor sIncomingExecutor = new SerialExecutor(
-//			Executors.newSingleThreadExecutor(), "msg_in");
-//	private static final SerialExecutor sOutcomingExecutor = new SerialExecutor(
-//			Executors.newSingleThreadExecutor(), "msg_out");
 
 }

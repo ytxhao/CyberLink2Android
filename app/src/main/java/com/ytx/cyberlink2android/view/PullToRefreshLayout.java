@@ -14,8 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+import com.scorpio.framework.utils.ScoLog;
 import com.ytx.cyberlink2android.R;
-import com.ytx.cyberlink2android.utils.YtxLog;
+
 
 public class PullToRefreshLayout extends LinearLayout {
     // pull state
@@ -436,7 +437,7 @@ public class PullToRefreshLayout extends LinearLayout {
             }
         }
         int newTopMargin = changingHeaderViewTopMargin(deltaY);
-        YtxLog.d("ytxhao","ytxhao test newTopMargin="+newTopMargin+" deltaY="+deltaY+" mHeaderViewHeight="+mHeaderViewHeight);
+        ScoLog.d("ytxhao","ytxhao test newTopMargin="+newTopMargin+" deltaY="+deltaY+" mHeaderViewHeight="+mHeaderViewHeight);
 
         int progress;
         if(params.topMargin > 0){

@@ -13,10 +13,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import com.scorpio.framework.utils.ScoLog;
+import com.scorpio.framework.utils.ScreenUtil;
 import com.ytx.cyberlink2android.R;
 import com.ytx.cyberlink2android.base.ActivityHelper;
-import com.ytx.cyberlink2android.utils.ScreenUtil;
-import com.ytx.cyberlink2android.utils.YtxLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,6 @@ public class BaseActivity extends AppCompatActivity {
     private View loadingView;
     protected Handler mHandler;
 
-    protected boolean needTransparent = false;
 
     private Runnable mDismissLoadingRunnable = new Runnable() {
 
@@ -48,7 +47,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        YtxLog.D(getClassName() + ":onCreate");
+        ScoLog.D(getClassName() + ":onCreate");
         isForegroundRunning = true;
     }
 
@@ -193,16 +192,13 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        YtxLog.D(getClassName() + ":onResume");
+        ScoLog.D(getClassName() + ":onResume");
         isForegroundRunning = true;
 
-        if(needTransparent) {
-            ScreenUtil.makeStatusBarTransparent(this, true);
-        }
 
         if (!isActive) {
             //app 从后台唤醒，进入前台
-            YtxLog.D("----app is in foreground----");
+            ScoLog.D("----app is in foreground----");
             isActive = true;
         }
     }
@@ -210,18 +206,18 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        YtxLog.D(getClassName() + ":onPause");
+        ScoLog.D(getClassName() + ":onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        YtxLog.D(getClassName() + ":onStop");
+        ScoLog.D(getClassName() + ":onStop");
         isForegroundRunning = false;
 
         if (!isAppOnForeground()) {
             //app 进入后台
-            YtxLog.D("----app is in background----");
+            ScoLog.D("----app is in background----");
             isActive = false;
         }
     }
@@ -229,26 +225,26 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        YtxLog.D(getClassName() + ":onDestroy");
+        ScoLog.D(getClassName() + ":onDestroy");
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        YtxLog.D(getClassName() + ":onRestoreInstanceState");
+        ScoLog.D(getClassName() + ":onRestoreInstanceState");
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        YtxLog.D(getClassName() + ":onSaveInstanceState");
+        ScoLog.D(getClassName() + ":onSaveInstanceState");
         isForegroundRunning = false;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        YtxLog.D(getClassName() + ":onActivityResult");
+        ScoLog.D(getClassName() + ":onActivityResult");
     }
 
     @Override
@@ -299,11 +295,4 @@ public class BaseActivity extends AppCompatActivity {
         return false;
     }
 
-    public boolean isNeedTransparent() {
-        return needTransparent;
-    }
-
-    public void setNeedTransparent(boolean needTransparent) {
-        this.needTransparent = needTransparent;
-    }
 }

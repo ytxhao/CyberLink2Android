@@ -9,8 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.scorpio.framework.utils.ScreenUtil;
 import com.ytx.cyberlink2android.R;
-import com.ytx.cyberlink2android.utils.ScreenUtil;
+
 
 
 public class SimpleBarRootActivity extends BaseActivity implements View.OnClickListener{

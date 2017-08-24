@@ -26,12 +26,12 @@ public abstract class SimpleBusinessOpt implements IBusinessOperation<Object> {
 	@Override
 	public Serializable preHandle(Serializable obj){
 		return doTask(obj);
-	};
+	}
 	abstract public Serializable doTask(Serializable obj);
 	
-	abstract public void hanldeSucceedResuilt(Object obj, ResultModel resultModel);
+	abstract public void handleSucceedResult(Object obj, ResultModel resultModel);
 	
-	abstract public void hanldeFailResuilt(String failMsg, boolean isNetworkFail, ResultModel resultModel);
+	abstract public void handleFailResult(String failMsg, boolean isNetworkFail, ResultModel resultModel);
 	
 
 	@Override
@@ -40,10 +40,10 @@ public abstract class SimpleBusinessOpt implements IBusinessOperation<Object> {
 		Object obj = resultModel.getObj();
 		int result = resultModel.getResultId();
 		if (result==ResultModel.TAG_OK){
-			hanldeSucceedResuilt(obj,resultModel);
+			handleSucceedResult(obj,resultModel);
 		}
 		else if((result==ResultModel.TAG_FAIL)||(result==ResultModel.TAG_NETWORK_FAIL)){
-			hanldeFailResuilt(resultModel.getDate(),(result==ResultModel.TAG_NETWORK_FAIL),resultModel);
+			handleFailResult(resultModel.getDate(),(result==ResultModel.TAG_NETWORK_FAIL),resultModel);
 		}
 	}
 	

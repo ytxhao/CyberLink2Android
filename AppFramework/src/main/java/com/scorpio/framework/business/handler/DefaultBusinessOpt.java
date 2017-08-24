@@ -24,7 +24,7 @@ public class DefaultBusinessOpt extends SimpleBusinessOpt {
 	}
 
 	@Override
-	public void hanldeSucceedResuilt(Object obj, ResultModel resultModel) {
+	public void handleSucceedResult(Object obj, ResultModel resultModel) {
 //		Log.d("DefaultBusinessOpt", "the business postHandle ok is:"+obj);
 		Serializable sobj = null ;
 		if(resultModel.getFromObj()!=null){
@@ -37,8 +37,8 @@ public class DefaultBusinessOpt extends SimpleBusinessOpt {
 	}
 
 	@Override
-	public void hanldeFailResuilt(String failMsg, boolean isNetworkFail,
-                                  ResultModel resultModel) {
+	public void handleFailResult(String failMsg, boolean isNetworkFail,
+								 ResultModel resultModel) {
 //		Log.d("DefaultBusinessOpt", "the business postHandle fail is:"+isNetworkFail);
 		Serializable sobj = null ;
 		if(resultModel.getFromObj()!=null){
