@@ -58,7 +58,7 @@ public class VersionUpgradeForceBusinessOpt extends DefaultBusinessOpt {
 
 			ScoLog.d(TAG, "VersionUpgradeForceBusinessOpt curm="+curm);
 
-			if(!curm.getListVersionInfo().toString().equals("[]")){
+			if(curm.getListVersionInfo()!=null && !curm.getListVersionInfo().toString().equals("[]")){
 				ScoLog.d(TAG, "VersionUpgradeForceBusinessOpt version_info_update_type="+curm.getListVersionInfo().get(0).version_info_update_type);
 
 				ScoLog.d(TAG, "版本号：" + curm.getListVersionInfo().get(0).version_number);

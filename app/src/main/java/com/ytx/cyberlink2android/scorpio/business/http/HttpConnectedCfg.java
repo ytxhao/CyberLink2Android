@@ -28,8 +28,6 @@ public class HttpConnectedCfg extends HttpProtocolEngine {
 		/*
 		 * 分类说明
 		 */
-		
-
 
 		/**
 		 * 版本升级
@@ -62,7 +60,7 @@ public class HttpConnectedCfg extends HttpProtocolEngine {
 		HttpConfigureSchema.DEFAULT_TIMEOUT_SECS = AppConfig.NETWORK_TIMEOUT_SECS;
 		if (inst == null) {
 			inst = new HttpConnectedCfg();
-			HttpConnectedCfg.getInstance().regeditHttpProtocolHandler(inst);
+			HttpConnectedCfg.getInstance().registerHttpProtocolHandler(inst);
 		}
 	}
 

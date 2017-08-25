@@ -56,7 +56,7 @@ public class HandleMessageListener implements MessageListener {
 	
 	private void handleResponse(boolean isok){
 		ResultModel response = fhp.HandleResponse(hrm);
-//		fhp.getReponseClass().cast(obj);		
+//		fhp.getResponseClass().cast(obj);
 		android.os.Message msg = new android.os.Message();
 		msg.what = id;		
 		if(response!=null){

@@ -37,7 +37,6 @@ public class LinkApplication extends MultiDexApplication {
         instance = this;
         getMobileInfo();
         fillPackageInfo();
-        CoreApplication.init(this);
 
     }
 

@@ -19,10 +19,10 @@ public class BusinessCenter {
 	{
 		 mHandler = new Handler() {
              public void handleMessage(Message msg) {
-               // process incoming messages here 
-            	 ScoLog.E(TAG, "the rich msg 's :"+msg+".................................................");
-            	Bundle r=msg.getData();
-				Serializable s =r.getSerializable(MessageDataKey.SIMPLE_TASK);
+               // process incoming messages here
+				 ScoLog.D(TAG, "the rich msg 's :"+msg+".................................................");
+            	Bundle r = msg.getData();
+				Serializable s = r.getSerializable(MessageDataKey.SIMPLE_TASK);
 				BusinessDispatcher.getInstance().handle(msg, s);
              }
          };

@@ -2,7 +2,6 @@ package com.scorpio.framework.core;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import com.scorpio.framework.business.protocol.BusinessCenter;
 import com.scorpio.framework.business.protocol.BusinessManager;
@@ -19,26 +18,39 @@ import com.scorpio.framework.utils.ScoLog;
  *
  */
 public class CoreEngine {
-	
-	private static CoreEngine _inst;
-
 	private static final String TAG = CoreEngine.class.getSimpleName();
+
+	//private static CoreEngine _inst;
+
+	private static class SingletonHolder {
+		private static final CoreEngine INSTANCE = new CoreEngine();
+	}
+
 	/**
 	 * 获取核心引擎实例
 	 * 
 	 * @return
 	 */
 	public static CoreEngine getInstance() {
-		if (_inst != null) {
+
+		if(SingletonHolder.INSTANCE != null){
 			if(!isEngineRunning()){
-				_inst.initEngine();
+				SingletonHolder.INSTANCE.initEngine();
 			}
-			return _inst;
-		} else {
-			_inst = new CoreEngine();
-			_inst.initEngine();
-			return _inst;
+
 		}
+
+		return SingletonHolder.INSTANCE;
+//		if (_inst != null) {
+//			if(!isEngineRunning()){
+//				_inst.initEngine();
+//			}
+//			return _inst;
+//		} else {
+//			_inst = new CoreEngine();
+//			_inst.initEngine();
+//			return _inst;
+//		}
 	}
 	LooperThread mWorkThread;
 	/**
@@ -53,13 +65,12 @@ public class CoreEngine {
 		mWorkThread = new LooperThread();
 		mWorkThread.setName("coreEngine(Scorpio)");
 		mWorkThread.start();
-		ScoLog.E(TAG, "CoreEngine is init ................................................");
+		ScoLog.D(TAG, "CoreEngine is init ................................................");
 	}
 	
 	/**
 	 * 核心引擎事件处理队列
-	 * 
-	 * @author zhangchi
+	 *
 	 *
 	 */
 	class LooperThread extends Thread {
@@ -69,7 +80,7 @@ public class CoreEngine {
 
 			try {
 				Looper.prepare();
-				Log.e("core", "CoreEngine is running ...................................");
+				ScoLog.D(TAG, "CoreEngine is running ...................................");
 				setHttpCenter(new HttpCenter());
 				setBusinessCenter(new BusinessCenter());
 				setUICenter(new UICenterDef());
@@ -131,18 +142,18 @@ public class CoreEngine {
 	 */
 	public UICenterDef getUiCenter() {
 		if(!isEngineRunning()){
-			_inst.initEngine();
+			initEngine();
 		}
-		return uicenter;
+		return uiCenter;
 	}
 	
 	public void setUICenter(UICenterDef ui){
-		uicenter = ui;
+		uiCenter = ui;
 	}
 	
 	public BusinessCenter getBusinessCenter() {
 		if(!isEngineRunning()){
-			_inst.initEngine();
+			initEngine();
 		}
 		return businessCenter;
 	}
@@ -153,7 +164,7 @@ public class CoreEngine {
 	
 	public HttpCenter getHttpCenter() {
 		if(!isEngineRunning()){
-			_inst.initEngine();
+			initEngine();
 		}
 		return httpCenter;
 	}
@@ -173,7 +184,7 @@ public class CoreEngine {
 	
 	private HttpCenter httpCenter ;
 	
-	private UICenterDef uicenter = new UICenterDef();
+	private UICenterDef uiCenter = new UICenterDef();
 	
 	private BusinessCenter businessCenter = new BusinessCenter();
 	

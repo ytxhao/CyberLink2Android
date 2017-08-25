@@ -29,7 +29,7 @@ public class HttpProtocolEngine implements IHttpProtocolEngine{
 	
 	static private Set<IHttpProtocolEngine> httpProtocols;
 	
-	public void regeditHttpProtocolHandler(IHttpProtocolEngine handler){
+	public void registerHttpProtocolHandler(IHttpProtocolEngine handler){
 		if(httpProtocols == null){
 			httpProtocols = new HashSet<IHttpProtocolEngine>();
 		}

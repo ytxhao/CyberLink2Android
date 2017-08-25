@@ -9,6 +9,7 @@ import com.scorpio.framework.net.http.HttpConnectionManager;
 import com.scorpio.framework.net.http.interfaces.HandleMessageListener;
 import com.scorpio.framework.net.http.interfaces.IHttpProtocol;
 import com.scorpio.framework.net.http.interfaces.MessageListener;
+import com.scorpio.framework.utils.ScoLog;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -26,6 +27,7 @@ import java.util.List;
 
 public class HttpProtocolUtils {    
 
+    private static final String TAG = HttpProtocolUtils.class.getSimpleName();
     public static String read(InputStream in) throws IOException {
         StringBuilder sb = new StringBuilder();
         BufferedReader r = new BufferedReader(new InputStreamReader(in), 1000);
@@ -126,15 +128,15 @@ public class HttpProtocolUtils {
     
     public static Class getClassByProtocol(int key){
     	if(HttpConnectionManager.hdms==null){
-    		Log.e("http", "the HttpConnectionManager.hdms==null");
+            ScoLog.d(TAG, "the HttpConnectionManager.hdms==null");
     		return null;
     	}
     	DataManagerInterface<Integer,Class> classes = HttpConnectionManager.hdms.get(HttpConnectionManager.HDM_RES);
     	if(classes!=null){
-//    		Log.e("http", "the HttpConnectionManager.hdms 's len "+classes.getSize()+";the id is:"+key);
+    		ScoLog.d(TAG, "the HttpConnectionManager.hdms 's len "+classes.getSize()+";the id is:"+key);
     		Class obj = classes.get(key);
     		if(obj==null){
-//        		Log.e("http", "the HttpConnectionManager.hdms 's obj ==null");
+                ScoLog.d(TAG, "the HttpConnectionManager.hdms 's obj ==null");
         		return null;
         	}
         	return obj;

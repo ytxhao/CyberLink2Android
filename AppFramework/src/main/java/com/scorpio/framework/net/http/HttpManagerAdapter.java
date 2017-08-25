@@ -256,24 +256,24 @@ public class HttpManagerAdapter {
 	 * 获取上传文件结构体
 	 *
 	 * @param files
-	 * @param cotentType
+	 * @param contentType
 	 * @return
 	 */
 	static public ArrayList<HttpPostUploadEntity> getArrayListEzHttpPostUploadEntity(
-            ArrayList<File> files, String cotentType) {
+            ArrayList<File> files, String contentType) {
 		// TODO Auto-generated method stub
-		ArrayList<HttpPostUploadEntity> fileEntitys = new ArrayList<HttpPostUploadEntity>();
+		ArrayList<HttpPostUploadEntity> fileEntities = new ArrayList<HttpPostUploadEntity>();
 		String tp = "upload";
 		String cType = "application/octet-stream";
-		if(cotentType != null){
-			cType = cotentType;
+		if(contentType != null){
+			cType = contentType;
 		}
 //		int i = 1;
 		for(File file:files){
-			fileEntitys.add(new HttpFilePostUploadEntity(file, tp, file.getName(),cType));
+			fileEntities.add(new HttpFilePostUploadEntity(file, tp, file.getName(),cType));
 //			i++;
 		}
-		return fileEntitys;
+		return fileEntities;
 	};
 
 	/**

@@ -19,7 +19,7 @@ public interface IHttpProtocol<T,C> {
 	 * 
 	 * @return
 	 */
-	Class<C> getReponseClass();
+	Class<C> getResponseClass();
 	
 	/**
 	 * 获取业务类型，请统一在MessageTypeID中指定。

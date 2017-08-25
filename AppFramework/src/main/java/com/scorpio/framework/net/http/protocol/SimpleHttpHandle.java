@@ -69,7 +69,7 @@ public class SimpleHttpHandle implements IHttpProtocol<Serializable,Object> {
 	}
 
 	@Override
-	public Class getReponseClass() {
+	public Class getResponseClass() {
 		// TODO Auto-generated method stub
 		return null;
 	}

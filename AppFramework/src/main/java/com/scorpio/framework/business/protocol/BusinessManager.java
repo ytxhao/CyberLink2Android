@@ -39,42 +39,6 @@ public class BusinessManager {
 	@SuppressWarnings("rawtypes")
 	static public List<IBusinessOperation> cps;
 
-	static {
-		// acount
-//		addOperation(UpdateProfileOpt.getInstance());
-//		addOperation(PasswordChangeOpt.getInstance());
-//		addOperation(ResetPasswordByPhoneOpt.getInstance());
-//
-//		// group
-//		addOperation(CreateGroupOpt.getInstance());
-//		addOperation(AddFavorGroupOpt.getInstance());
-//		addOperation(AddGroupMemberOpt.getInstance());
-//		addOperation(DeleteGroupFavorOpt.getInstance());
-//		addOperation(DeleteGroupMemberOpt.getInstance());
-//		addOperation(GetFavorGroupOpt.getInstance());
-//		addOperation(GetGroupOpt.getInstance());
-//		addOperation(QuitGroupOpt.getInstance());
-//		addOperation(ChangeFavorNameOpt.getInstance());
-//
-//		// im
-//		addOperation(ChatMsgRcvOpt.getInstance());
-//		addOperation(ChatMsgSendOpt.getInstance());
-//		addOperation(RichMsgSendOpt.getInstance());
-//		addOperation(RichMsgRcvOpt.getInstance());
-//
-//		// profile
-//		addOperation(GetMyProfileOpt.getInstance());
-//		addOperation(GetMyRecentOpt.getInstance());
-//		addOperation(GetUserProfileOpt.getInstance());
-//		addOperation(GetUserRecentOpt.getInstance());
-//		addOperation(HiddenBabyOpt.getInstance());
-//		addOperation(UpdateRecentOpt.getInstance());
-//		addOperation(UpdateRelationTimeOpt.getInstance());
-//
-//		// maintain
-//		addOperation(AndroidUpdateOpt.getInstance());
-	}
-
 	@SuppressWarnings("rawtypes")
 	protected static void addOperation(IBusinessOperation operation) {
 		if (cps == null) {

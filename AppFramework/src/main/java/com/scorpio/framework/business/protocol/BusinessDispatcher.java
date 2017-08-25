@@ -36,7 +36,7 @@ public class BusinessDispatcher {
 			handle(id,obj,true,msg.arg2,msg);
 		}else{
 //			oldHandle(id/10000,msg);
-			ScoLog.E(TAG, "BusinessDispatcher's msg 's arg1 is error:no such number task:"+msg.arg1);
+			ScoLog.E(TAG, "BusinessDispatcher's msg's arg1 is error:no such number task:"+msg.arg1);
 		}
 	}
 
